@@ -51,9 +51,7 @@ namespace roulette
 
             List<String> numbersChosen = new List<String>();
 
-            Console.Write("Time to place bets, how much would you like to stake? £");
-            stake = Console.ReadLine();
-            Console.ReadKey();
+            betFunc();
 
             Console.WriteLine("How many number would you like to choose - 1, 2, 3 or 4? ");
             userInput = Console.ReadLine();
@@ -122,9 +120,7 @@ namespace roulette
         {
             string userInput;
 
-            Console.Write("Time to place bets, how much would you like to stake? £");
-            stake = Console.ReadLine();
-            Console.ReadKey();
+            betFunc();
             Console.WriteLine("You have chosen to bet via colours. Would you like to choose: 1 - Red or 2 - Black");
             userInput = Console.ReadLine();
             Console.ReadKey();
@@ -158,9 +154,7 @@ namespace roulette
         {
             string userInput;
 
-            Console.Write("Time to place bets, how much would you like to stake? £");
-            stake = Console.ReadLine();
-            Console.ReadKey();
+            betFunc();
             Console.WriteLine("You have chosen to pick either Odd or Even. 1 - Odd or 2 - Even");
             userInput = Console.ReadLine();
 
@@ -188,6 +182,24 @@ namespace roulette
                     lose();
                 }
             }
+        }
+        public void betFunc()
+        {
+            START:
+            string stakeChosen;
+            Console.Write("Time to place bets, how much would you like to stake? £");
+            stakeChosen = Console.ReadLine();
+
+            if (Convert.ToInt32(stakeChosen) < 500)
+            {
+                stake = stakeChosen;
+            }
+            else
+            {
+                Console.WriteLine("Sorry that stake is too high for a single bet, please bet a smaller amount");
+                goto START;
+            }
+            Console.ReadKey();
         }
         public void colourGenerator()
         {
