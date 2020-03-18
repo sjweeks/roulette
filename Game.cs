@@ -12,9 +12,11 @@ namespace roulette
         bool numberCheck;
         // bool listCheck;
         int odds;
+        int balance;
 
         public void initialise()
         {
+            balance = 0;
             Console.WriteLine("Welcome to Roulette! Please gamble responsibly!");
             Console.ReadKey();
             Console.Write("Enter player name: ");
@@ -23,7 +25,6 @@ namespace roulette
             Console.ReadKey();
             startGame();
         }
-
         public void startGame()
         {
             string userInput;
@@ -52,8 +53,6 @@ namespace roulette
 
             Console.Write("Time to place bets, how much would you like to stake? £");
             stake = Console.ReadLine();
-            Console.ReadKey();
-            Console.WriteLine("You have chosen to bet on numbers");
             Console.ReadKey();
 
             Console.WriteLine("How many number would you like to choose - 1, 2, 3 or 4? ");
@@ -86,7 +85,6 @@ namespace roulette
                 numbersChosen.Add(userInput);
                 userInput = Console.ReadLine();
                 numbersChosen.Add(userInput);
-
             }
             else if (userInput == "4")
             {
@@ -100,7 +98,6 @@ namespace roulette
                 numbersChosen.Add(userInput);
                 userInput = Console.ReadLine();
                 numbersChosen.Add(userInput);
-
             }
 
             Console.WriteLine("Your odds are: {0}/1", odds);
@@ -111,9 +108,10 @@ namespace roulette
                 odds *= Convert.ToInt32(stake);
                 string winnings = Convert.ToString(odds);
                 Console.WriteLine("You won {0}", winnings);
+                balance += Convert.ToInt32(stake);
+                Console.WriteLine("Your balance is currently: {0}", balance);
 
                 win();
-
             }
             else
             {
@@ -231,8 +229,10 @@ namespace roulette
 
             string winnings = Convert.ToString(times);
 
-            Console.WriteLine("You have doubled your stake, you won: £{0}", winnings);
+            Console.WriteLine("You have doubled your stake, you just won: £{0}", winnings);
             Console.ReadKey();
+            balance += Convert.ToInt32(winnings);
+            Console.WriteLine("Your current balance is: {0}", balance);
 
             win();
         }
@@ -255,8 +255,10 @@ namespace roulette
         public void lose()
         {
             string userInput;
-
-            Console.WriteLine("Sorry {0}, you have lost! Would you like to play again? Y or N", userName);
+            balance -= Convert.ToInt32(stake);
+            Console.WriteLine("Sorry {0}, you have lost. Your new balance is: {1}", userName, balance);
+            Console.ReadKey();
+            Console.WriteLine("Would you like to play again? Y or N");
             userInput = Console.ReadLine();
 
             if (userInput == "y")
