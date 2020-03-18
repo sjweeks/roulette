@@ -1,0 +1,276 @@
+using System;
+using System.Collections.Generic;
+
+namespace roulette
+{
+    class Game
+    {
+        string userName;
+        string stake;
+        string colour;
+        int number;
+        bool numberCheck;
+        // bool listCheck;
+        int odds;
+
+        public void initialise()
+        {
+            Console.WriteLine("Welcome to Roulette! Please gamble responsibly!");
+            Console.ReadKey();
+            Console.Write("Enter player name: ");
+            userName = Console.ReadLine();
+            Console.WriteLine("Welcome {0}, lets start the game", userName);
+            Console.ReadKey();
+            startGame();
+        }
+
+        public void startGame()
+        {
+            string userInput;
+
+            Console.WriteLine("How would you like to bet? 1 - Numbers, 2 - Red/Black, 3 - Odd/Even");
+            userInput = Console.ReadLine();
+
+            if (userInput == "1")
+            {
+                numberBet();
+            }
+            else if (userInput == "2")
+            {
+                colourBet();
+            }
+            else if (userInput == "3")
+            {
+                oddBet();
+            }
+        }
+        public void numberBet()
+        {
+            string userInput;
+
+            List<String> numbersChosen = new List<String>();
+
+            Console.Write("Time to place bets, how much would you like to stake? £");
+            stake = Console.ReadLine();
+            Console.ReadKey();
+            Console.WriteLine("You have chosen to bet on numbers");
+            Console.ReadKey();
+
+            Console.WriteLine("How many number would you like to choose - 1, 2, 3 or 4? ");
+            userInput = Console.ReadLine();
+
+            if (userInput == "1")
+            {
+                odds = 35;
+                Console.WriteLine("Please choose 1 number");
+                userInput = Console.ReadLine();
+                numbersChosen.Add(userInput);
+            }
+            else if (userInput == "2")
+            {
+                odds = 17;
+                Console.WriteLine("Please choose 2 numbers");
+                userInput = Console.ReadLine();
+                numbersChosen.Add(userInput);
+                userInput = Console.ReadLine();
+                numbersChosen.Add(userInput);
+
+            }
+            else if (userInput == "3")
+            {
+                odds = 11;
+                Console.WriteLine("Please choose 3 numbers");
+                userInput = Console.ReadLine();
+                numbersChosen.Add(userInput);
+                userInput = Console.ReadLine();
+                numbersChosen.Add(userInput);
+                userInput = Console.ReadLine();
+                numbersChosen.Add(userInput);
+
+            }
+            else if (userInput == "4")
+            {
+                odds = 8;
+                Console.WriteLine("Please choose 4 numbers");
+                userInput = Console.ReadLine();
+                numbersChosen.Add(userInput);
+                userInput = Console.ReadLine();
+                numbersChosen.Add(userInput);
+                userInput = Console.ReadLine();
+                numbersChosen.Add(userInput);
+                userInput = Console.ReadLine();
+                numbersChosen.Add(userInput);
+
+            }
+
+            Console.WriteLine("Your odds are: {0}/1", odds);
+            numberGenerator();
+
+            if (numbersChosen.Contains(Convert.ToString(number)))
+            {
+                odds *= Convert.ToInt32(stake);
+                string winnings = Convert.ToString(odds);
+                Console.WriteLine("You won {0}", winnings);
+
+                win();
+
+            }
+            else
+            {
+                lose();
+            }
+        }
+        public void colourBet()
+        {
+            string userInput;
+
+            Console.Write("Time to place bets, how much would you like to stake? £");
+            stake = Console.ReadLine();
+            Console.ReadKey();
+            Console.WriteLine("You have chosen to bet via colours. Would you like to choose: 1 - Red or 2 - Black");
+            userInput = Console.ReadLine();
+            Console.ReadKey();
+
+            if (userInput == "1")
+            {
+                colourGenerator();
+                if (colour == "Red")
+                {
+                    standardWin();
+                }
+                else
+                {
+                    lose();
+                }
+            }
+            else if (userInput == "2")
+            {
+                colourGenerator();
+                if (colour == "Black")
+                {
+                    standardWin();
+                }
+                else
+                {
+                    lose();
+                }
+            }
+        }
+        public void oddBet()
+        {
+            string userInput;
+
+            Console.Write("Time to place bets, how much would you like to stake? £");
+            stake = Console.ReadLine();
+            Console.ReadKey();
+            Console.WriteLine("You have chosen to pick either Odd or Even. 1 - Odd or 2 - Even");
+            userInput = Console.ReadLine();
+
+            if (userInput == "1")
+            {
+                evenGenerator();
+                if (numberCheck == true)
+                {
+                    lose();
+                }
+                else
+                {
+                    standardWin();
+                }
+            }
+            else if (userInput == "2")
+            {
+                evenGenerator();
+                if (numberCheck == true)
+                {
+                    standardWin();
+                }
+                else
+                {
+                    lose();
+                }
+            }
+        }
+        public void colourGenerator()
+        {
+            Random rnd = new Random();
+            string[] colourPick = { "Red", "Black" };
+            int playerIndex = rnd.Next(colourPick.Length);
+            Console.WriteLine("The number landed on: {0}", colourPick[playerIndex]);
+            colour = colourPick[playerIndex];
+        }
+        public void numberGenerator()
+        {
+            Random rndno = new Random();
+            int randomGenerator = rndno.Next(0, 37);
+            number = randomGenerator;
+            Console.WriteLine(number);
+        }
+        public void evenGenerator()
+        {
+            numberGenerator();
+            if (number % 2 == 0)
+            {
+                Console.WriteLine("The number rolled was Even");
+                Console.ReadKey();
+                numberCheck = true;
+            }
+            else
+            {
+                Console.WriteLine("The number rolled was Odd");
+                Console.ReadKey();
+                numberCheck = false;
+            }
+        }
+        public void standardWin()
+        {
+            int times = 2;
+
+            Console.WriteLine("Congrats {0}, you won that round!", userName);
+            times *= Convert.ToInt32(stake);
+
+            string winnings = Convert.ToString(times);
+
+            Console.WriteLine("You have doubled your stake, you won: £{0}", winnings);
+            Console.ReadKey();
+
+            win();
+        }
+        public void win()
+        {
+            string userInput;
+
+            Console.WriteLine("Would you like to play again? Y or N");
+            userInput = Console.ReadLine();
+
+            if (userInput == "y")
+            {
+                startGame();
+            }
+            else if (userInput == "n")
+            {
+                endGame();
+            }
+        }
+        public void lose()
+        {
+            string userInput;
+
+            Console.WriteLine("Sorry {0}, you have lost! Would you like to play again? Y or N", userName);
+            userInput = Console.ReadLine();
+
+            if (userInput == "y")
+            {
+                startGame();
+            }
+            else if (userInput == "n")
+            {
+                endGame();
+            }
+        }
+        public void endGame()
+        {
+            Console.WriteLine("Thanks for playing, come back soon!");
+        }
+    }
+}

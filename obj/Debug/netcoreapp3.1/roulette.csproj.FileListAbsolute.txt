@@ -1,0 +1,10 @@
+/Users/sarahweeks/Desktop/Projects/roulette/bin/Debug/netcoreapp3.1/roulette.deps.json
+/Users/sarahweeks/Desktop/Projects/roulette/bin/Debug/netcoreapp3.1/roulette.runtimeconfig.json
+/Users/sarahweeks/Desktop/Projects/roulette/bin/Debug/netcoreapp3.1/roulette.runtimeconfig.dev.json
+/Users/sarahweeks/Desktop/Projects/roulette/bin/Debug/netcoreapp3.1/roulette.dll
+/Users/sarahweeks/Desktop/Projects/roulette/bin/Debug/netcoreapp3.1/roulette.pdb
+/Users/sarahweeks/Desktop/Projects/roulette/obj/Debug/netcoreapp3.1/roulette.csprojAssemblyReference.cache
+/Users/sarahweeks/Desktop/Projects/roulette/obj/Debug/netcoreapp3.1/roulette.AssemblyInfoInputs.cache
+/Users/sarahweeks/Desktop/Projects/roulette/obj/Debug/netcoreapp3.1/roulette.AssemblyInfo.cs
+/Users/sarahweeks/Desktop/Projects/roulette/obj/Debug/netcoreapp3.1/roulette.dll
+/Users/sarahweeks/Desktop/Projects/roulette/obj/Debug/netcoreapp3.1/roulette.pdb
