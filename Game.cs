@@ -53,7 +53,7 @@ namespace roulette
 
             betFunc();
 
-            Console.WriteLine("How many number would you like to choose - 1, 2, 3 or 4? ");
+            Console.WriteLine("How many numbers would you like to choose - 1, 2, 3 or 4? ");
             userInput = Console.ReadLine();
 
             if (userInput == "1")
@@ -99,6 +99,7 @@ namespace roulette
             }
 
             Console.WriteLine("Your odds are: {0}/1", odds);
+            Console.ReadKey();
             numberGenerator();
 
             if (numbersChosen.Contains(Convert.ToString(number)))
